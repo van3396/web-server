@@ -22,7 +22,12 @@ app.get("", (request, response) => {
     - this will be a another route
     */
 app.get("/help", (req, res) => {
-  res.send("Help page");
+  res.send({
+      name: 'Qui',
+      age: 35
+  });
+  // sends a json response back in a stringfy version
+  // sends same with an array
 });
 
 /*
@@ -31,7 +36,8 @@ app.com/about
     - this will be a another route
 */
 app.get("/about", (req, res) => {
-  res.send("About page");
+  res.send('<h1>About Page</h1>');
+    //send a raw stringify version of an array
 });
 
 /*
@@ -40,7 +46,10 @@ app.com/weather
     - this will be a another route
 */
 app.get("/weather", (req, res) => {
-  res.send("Weather page");
+  res.send({
+      forecast: 'Not a cloud in the sky',
+      location: 'Florida'
+  });
 });
 
 //to start the server up
