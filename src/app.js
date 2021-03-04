@@ -1,27 +1,35 @@
 const chalk = require("chalk");
+// Express is just a function to call a new express application
 const express = require("express");
-//express is just a function to call a new express application
+const hbs = require("hbs");
 
+// Core module, no need to install it
 const path = require("path");
-// core module, no need to install it
 
-// dirname and filename is provided by the wrapper function
+// Dirname and filename is provided by the wrapper function
+
+// Path to directory current file/script lives in
 // console.log(__dirname)
-// path to directory current file/script lives in
+
+// Path to directory file lives in
 // console.log(__filename)
-// path to directory file lives in
-
+// Generates a path to whichever folder you want to go into
 // console.log(path.join(__dirname, '../public'))
-// generates a path to whichever folder you want to go into
-
-// app.use is a way to customize ther server
 
 const app = express();
-const publicPath = path.join(__dirname, "../public");
-// const aboutPath = path.join(__dirname, '../public/about')
-// const helpPath = path.join(__dirname, '../public/help')
 
+// Define paths for Express config
+const publicPath = path.join(__dirname, "../public");
+const viewsPath = path.join(__dirname, "../templates/views");
+const partialPath = path.join(__dirname, '../templates/partials')
+
+// Setup handlebars engine and views location
 app.set("view engine", "hbs");
+app.set("views", viewsPath);
+hbs.registerPartials(partialPath)
+
+// Setup static directory to serve
+// app.use is a way to customize ther server
 app.use(express.static(publicPath));
 
 app.get("", (req, res) => {
@@ -33,19 +41,18 @@ app.get("", (req, res) => {
 
 app.get("/about", (req, res) => {
   res.render("about", {
-      title: 'About Me',
-      name: 'Qui Van'
+    title: "About Me",
+    name: "Qui Van",
   });
 });
 
-app.get('/help', (req, res) => {
-    res.render('help', {
-        title: 'Help',
-        name: 'Qui Van',
-        message: 'Welcome to the help page.'
-        
-    })
-})
+app.get("/help", (req, res) => {
+  res.render("help", {
+    title: "Help",
+    name: "Qui Van",
+    message: "Welcome to the help page.",
+  });
+});
 
 app.get("/weather", (req, res) => {
   res.send({
@@ -54,7 +61,7 @@ app.get("/weather", (req, res) => {
   });
 });
 
-//to start the server up
+// To start the server up
 app.listen(3000, () => {
   console.log(chalk.magenta("Dancing on PORT 3000"));
 });
