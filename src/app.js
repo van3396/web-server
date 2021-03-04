@@ -61,6 +61,22 @@ app.get("/weather", (req, res) => {
   });
 });
 
+app.get('/help/*', (req, res) => {
+    res.render("error", {
+        title: "404",
+        name: "Qui Van",
+        message: "Help article not found."
+    })
+})
+
+app.get('/*', (req, res) => {
+    res.render('error', {
+        title: "404",
+        name: "Qui Van",
+        message: "Page not found."
+    })
+})
+
 // To start the server up
 app.listen(3000, () => {
   console.log(chalk.magenta("Dancing on PORT 3000"));
