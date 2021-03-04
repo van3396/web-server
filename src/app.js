@@ -69,7 +69,7 @@ app.get("/help/*", (req, res) => {
   });
 });
 
-app.get("/*", (req, res) => {
+app.get("*", (req, res) => {
   res.render("error", {
     title: "404",
     name: "Qui Van",
