@@ -21,12 +21,12 @@ const app = express();
 // Define paths for Express config
 const publicPath = path.join(__dirname, "../public");
 const viewsPath = path.join(__dirname, "../templates/views");
-const partialPath = path.join(__dirname, '../templates/partials')
+const partialPath = path.join(__dirname, "../templates/partials");
 
 // Setup handlebars engine and views location
 app.set("view engine", "hbs");
 app.set("views", viewsPath);
-hbs.registerPartials(partialPath)
+hbs.registerPartials(partialPath);
 
 // Setup static directory to serve
 // app.use is a way to customize ther server
@@ -61,21 +61,21 @@ app.get("/weather", (req, res) => {
   });
 });
 
-app.get('/help/*', (req, res) => {
-    res.render("error", {
-        title: "404",
-        name: "Qui Van",
-        message: "Help article not found."
-    })
-})
+app.get("/help/*", (req, res) => {
+  res.render("error", {
+    title: "404 Help",
+    name: "Qui Van",
+    message: "Help article not found.",
+  });
+});
 
-app.get('/*', (req, res) => {
-    res.render('error', {
-        title: "404",
-        name: "Qui Van",
-        message: "Page not found."
-    })
-})
+app.get("/*", (req, res) => {
+  res.render("error", {
+    title: "404",
+    name: "Qui Van",
+    message: "Page not found.",
+  });
+});
 
 // To start the server up
 app.listen(3000, () => {
