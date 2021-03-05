@@ -2,9 +2,7 @@ const chalk = require("chalk");
 // Express is just a function to call a new express application
 const express = require("express");
 const hbs = require("hbs");
-const geocode = require("../utils/geocode");
-const forecast = require("../utils/forecast");
-// const { mapBox, weatherstack } = require("../utils");
+const { geocode, forecast } = require("../utils");
 
 // Core module, no need to install it
 const path = require("path");
@@ -64,11 +62,6 @@ app.get("/weather", (req, res) => {
     });
   }
 
-  // res.send({
-  //   forecast: "Not a cloud in the sky",
-  //   location: "Florida",
-  //   address: req.query.address,
-  // });
   geocode(req.query.address, (error, { latitude, longitude, location }) => {
     if (error) {
       return res.send({ error });

@@ -13,7 +13,7 @@ const forecast = (latitude, longitude, callback) => {
       const { temperature, weather_descriptions } = body.current;
       callback(
         undefined,
-        `In ${region}, the current temperature is ${temperature} degrees and ${weather_descriptions[0]}.`
+        `${weather_descriptions[0]}, the current temperature is ${temperature} degrees.`
       );
     }
   });
