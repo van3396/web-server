@@ -11,6 +11,7 @@ const forecast = (latitude, longitude, callback) => {
     } else {
       const { region } = body.location;
       const { temperature, weather_descriptions } = body.current;
+
       callback(
         undefined,
         `${weather_descriptions[0]}, the current temperature is ${temperature} degrees.`
