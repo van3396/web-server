@@ -18,6 +18,7 @@ const path = require("path");
 // console.log(path.join(__dirname, '../public'))
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define paths for Express config
 const publicPath = path.join(__dirname, "../public");
@@ -111,8 +112,8 @@ app.get("*", (req, res) => {
 });
 
 // To start the server up
-app.listen(3000, () => {
-  console.log(chalk.magenta("Dancing on PORT 3000"));
+app.listen(port, () => {
+  console.log(chalk.magenta(`Dancing on PORT ${port}`));
 });
 
 /* 
